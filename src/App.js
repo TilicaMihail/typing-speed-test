@@ -4,7 +4,7 @@ import { data } from './data';
 
 function App() {
     const totalseconds = 30
-    const [words, setWords] = useState(data)
+    const [words, setWords] = useState([])
     const [wordsCorrect, setWordsCorrect] = useState([])
     const [inputIsFocused, setInputIsFocused] = useState(true)
     const [timeouts, setTimeouts] = useState([])
@@ -17,8 +17,18 @@ function App() {
     const inputRef = useRef();
 
     useEffect(() => {
+        fetchWords()
         inputRef.current.focus();
     }, [])
+
+    const fetchWords = () => {
+        let a = []
+        const length = data.getWordCount()
+        for(let i = 0; i < 90; i++) {
+            a.push(data.getWordAtPosition(Math.floor(Math.random() * (200))))
+        }
+        setWords(a)
+    }
 
     const focusInput = (e) => {
         e.stopPropagation()
@@ -73,6 +83,7 @@ function App() {
         setCurrentWordIndex(0)
         setInputIsFocused(true)
         setModalOpen(false)
+        fetchWords()
         inputRef.current.focus();
     }
 
