@@ -2,3 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.enable-blur>* {
+  filter: blur(100px);
+}
+
+.disable-blur {
+  filter: blur(0);
+}
